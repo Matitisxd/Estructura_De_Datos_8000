@@ -6,7 +6,7 @@ using namespace std;
 template <typename T>
 class Matrices{
 	public:
-		void multiplicacionMatrices(T **, T **, T **);
+		void multiplicacionMatrices(T **, P**, T **);
 		
 		void encerarMatriz();
 		
@@ -18,22 +18,22 @@ class Matrices{
 		
 		void pedirDatos();
 		void llenarMatrizA();
-		void llenarMatrizB();
+		void potencia();
 		void multiplicacionRecursivaMatrizA(T**,T**,T**,T);
-		void multiplicacionRecursivaMatrizB(T**,T**,T**,T,T);
+		void potencia();
 		void multiplicacionRecursiva(T**,T**,T**,T,T,T);
 		
 		//getters y setters de los atributos de la clase
 		T** getMat1();
-		T** getMat2();
+		T** potencia();
 		T** getMatR();
 		T getFa(); T getFb(); T getCa(); T getCb(); T getK();
 		void setMat1(T** );
-		void setMat2(T** );
+		void setpotencia(T** );
 		void setMatR(T** );
 		void setFa(T); void setFb(T); void setCa(T); void setCb(T); void setK(T);
 		
 	private:
 		//atributos de la clase	
-		T **mat1,**mat2,**matR,fa,ca,fb,cb,k,i,j;
+		T **mat1,**potencia,**matR,fa,ca,fb,cb,k,i,j;
 };

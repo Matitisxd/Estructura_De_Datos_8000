@@ -4,20 +4,13 @@
 template <typename T>
 Matrices<T>::Matrices(){
 	mat1=(T **)calloc (3,sizeof(T*));
-	mat2=(T **)calloc (3,sizeof(T*));
+	potencia =(T **) ;
 	matR=(T **)calloc (3,sizeof(T*));
-	//fa=0; fb=0; ca=0; cb=0,k=0;
-	//k=ca;
 }
 
 template <typename T>
 T** Matrices<T>::getMat1(){
 	return mat1;
-}
-
-template <typename T>
-T** Matrices<T>::getMat2(){
-	return mat2;
 }
 
 template <typename T>
@@ -31,20 +24,13 @@ T Matrices<T>::getFa(){
 }
 
 template <typename T>
-T Matrices<T>::getFb(){
-	return fb;
-}
-
-template <typename T>
 T Matrices<T>::getCa(){
 	return ca;	
 }
-
 template <typename T>
-T Matrices<T>::getCb(){
-	return cb;
+T Matrices<T>::getPotencia(){
+	return potencia;
 }
-
 template <typename T>
 T Matrices<T>::getK(){
 	return k;
@@ -53,11 +39,6 @@ T Matrices<T>::getK(){
 template <typename T>
 void Matrices<T>::setMat1(T** otroMat1){
 	mat1=otroMat1;
-}
-
-template <typename T>
-void Matrices<T>::setMat2(T** otroMat2){
-	mat2=otroMat2;
 }
 
 template <typename T>
@@ -71,18 +52,8 @@ void Matrices<T>::setFa(T otroFa){
 }
 
 template <typename T>
-void Matrices<T>::setFb(T otroFb){
-	fb=otroFb;	
-}
-
-template <typename T>
 void Matrices<T>::setCa(T otroCa){
 	ca=otroCa;
-}
-
-template <typename T>
-void Matrices<T>::setCb(T otroCb){
-	cb=otroCb;	
 }
 
 template <typename T>
@@ -91,12 +62,12 @@ void Matrices<T>::setK(T otroK){
 }
 
 template <typename T>
-void Matrices<T>::multiplicacionMatrices(T **mat1, T **mat2, T **matR){
+void Matrices<T>::multiplicacionMatrices(T **mat1,potencia, T **matR){
 	for(int i=0;i<fa;i++){
 		for(int j=0;j<cb;j++){
 			*(*(matR+i)+j)=0; //C[i][j]=0;
 				for(int k=0;k<ca;k++){
-					*(*(matR+i)+j)+=(*(*(mat1+i)+k)) * (*(*(mat2+k)+j)); //	C[i][j]+=A[i][k]*B[k][j];
+					*(*(matR+i)+j)+=(*(*(mat1+i)+k)) * potencia(); //	C[i][j]+=A[i][k]*B[k][j];
 				}
 		}
 	}
@@ -106,7 +77,7 @@ template <typename T>
 void Matrices<T>::encerarMatriz(){
 	for(int j=0;j<3;j++){
 		*(mat1+j)=(T*)calloc(3,sizeof(T*));
-		*(mat2+j)=(T*)calloc(3,sizeof(T*));
+		*(potencia);
 		*(matR+j)=(T*)calloc(3,sizeof(T*));
 	} 
 }
@@ -116,7 +87,6 @@ void Matrices<T>::llenarMatrizRandom(){
 	for(int i=0;i<3;i++){
 		for(int j=0;j<3;j++){
 			*(*(mat1+i)+j)=(T)((rand()/32768.1)*1000); //mat1[i][j]=numero int randomico
-			*(*(mat2+i)+j)=(T)((rand()/32768.1)*1000); //mat2[i][j]=numero int randomico
 			*(*(matR+i)+j)=0; 							 //matR[i][j]=0 de inicializacion
 		}
 	}
@@ -154,27 +124,27 @@ void Matrices<T>::imprimirMatriz(T **matAux,char *charMat){
 }
 
 template <typename T>
-void Matrices<T>::multiplicacionRecursivaMatrizA(T** mat1,T** mat2,T** matR,T i){
+void Matrices<T>::multiplicacionRecursivaMatrizA(T** mat1,**potencia,T** matR,T i){
 	if (i<fa)
        {
-           multiplicacionRecursivaMatrizB(mat1,mat2,matR,i,0);
-           multiplicacionRecursivaMatrizA(mat1,mat2,matR,i+1);
+           multiplicacionRecursivaMatrizB(mat1,potencia,matR,i,0);
+           multiplicacionRecursivaMatrizA(mat1,potencia,matR,i+1);,
        }
 }
    
 template <typename T>
- void Matrices<T>::multiplicacionRecursivaMatrizB(T** mat1,T** mat2,T** matR, T i, T j){
+ void Matrices<T>::multiplicacionRecursivaMatrizB(T** mat1,potencia,T** matR, T i, T j){
  	if(j<cb){
- 			multiplicacionRecursiva(mat1,mat2,matR,i,j,0);
-           	multiplicacionRecursivaMatrizB(mat1,mat2,matR,i,j+1);
+ 			multiplicacionRecursiva(mat1,potencia,matR,i,j,0);
+           	multiplicacionRecursivaMatrizB(mat1,potencia,matR,i,j+1);
 	 }
  }
 
 template <typename T>
-void Matrices<T>::multiplicacionRecursiva(T** mat1,T** mat2,T** matR,T i,T j,T k){
+void Matrices<T>::multiplicacionRecursiva(T** mat1,potencia,T** matR,T i,T j,T k){
 	if(k<ca){
-	(*(*(matR+i)+j)) +=(*(*(mat1+i)+k)) * (*(*(mat2+k)+j)); //	C[i][j]+=A[i][k]*B[k][j];	
-	multiplicacionRecursiva(mat1,mat2,matR,i,j,k+1);
+	(*(*(matR+i)+j)) +=(*(*(mat1+i)+k)) * potencia); //	C[i][j]+=A[i][k]*potencia;	
+	multiplicacionRecursiva(mat1,potencia,matR,i,j,k+1);
 	}
 }
 
